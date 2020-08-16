@@ -7,7 +7,8 @@ This Blender addon allows you to copy the location/rotation/scaling of all the s
 
 ### Requirements
 For the addon to work properly, you need to place the <a href="https://pypi.org/project/pyperclip/">pyperclip</a> Python module inside of your Blender installation folder.
-I still need to find a nice way to automatically install it upon addon activation, so for now you can find the pyperclip folder inside of the addon .zip. You can place that entire folder in this directory here: ..\Blender\2.XX\python\lib\site-packages
+I still need to find a nice way to automatically install it upon addon activation, so for now **you can find the pyperclip folder inside of the addon .zip.**
+You can place that entire folder in this directory here: ..\Blender\2.XX\python\lib\site-packages
 
 ---
 ☕🤎 If you find the content useful, you could get me a coffee at https://www.buymeacoffee.com/nazzareno
