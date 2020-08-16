@@ -14,21 +14,6 @@ bl_info = {
 
 import bpy
 from math import*
-import subprocess
-import sys
-import os
-
-python_exe = os.path.join(sys.prefix, 'bin', 'python.exe')
-
-# 'C:\\Program Files\\blender283\\2.83\\python\\bin\\python.exe'
-
-#check the pip installation
-subprocess.call([python_exe, "-m", "ensurepip"])
-#subprocess.call([python_exe, "-m", "pip", "install", "--upgrade", "pip"])
-
-#install pyperclip
-subprocess.call([python_exe, "-m", "pip", "install", "pyperclip", "--user"])
-
 import pyperclip
 
 #create the new Operator Class
