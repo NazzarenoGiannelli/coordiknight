@@ -1,4 +1,4 @@
-#info that transforms a regular script into an installable addon
+#info about the addon
 bl_info = {
     "name": "Transform to Unreal Engine",
     "author": "Nazzareno Giannelli <nazzareno@myd3sign.com>",
@@ -42,18 +42,18 @@ class OBJECT_OT_transform_ue(bpy.types.Operator):
 
             #get object location in centimeters
             locX = str(s.location.x * 100)
-            locY = str(s.location.y * 100)
+            locY = str(-s.location.y * 100)
             locZ = str(s.location.z * 100)
 
             #get object rotation in degrees
-            rotX = str(degrees(s.rotation_euler.x))
-            rotY = str(degrees(-s.rotation_euler.y))
-            rotZ = str(degrees(-s.rotation_euler.z))
+            rotX = str(round(degrees(s.rotation_euler.x), 6))
+            rotY = str(round(degrees(-s.rotation_euler.y), 6))
+            rotZ = str(round(degrees(-s.rotation_euler.z), 6))
 
             #get object scale
-            sclX = str(-s.scale.x)
+            sclX = str(s.scale.x)
             sclY = str(s.scale.y)
-            sclZ = str(bpy.context.active_object.scale.z)
+            sclZ = str(s.scale.z)
             
             #add numbering to the current object
             counter += 1
