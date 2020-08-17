@@ -1,6 +1,6 @@
 #info about the addon
 bl_info = {
-    "name": "Transform to Unreal Engine",
+    "name": "CoordiKnight | Blender to Unreal Engine",
     "author": "Nazzareno Giannelli <nazzareno@myd3sign.com>",
     "version": (1, 0),
     "blender": (2, 83, 0),
@@ -8,7 +8,7 @@ bl_info = {
     "location": "View 3D > Object",
     "description": "Copy location, rotation and scale of the selected objects to clipboard and easily paste them into Unreal Engine",
     "warning": "",
-    "doc_url": "https://github.com/NazzarenoGiannelli/matslotcleaner",
+    "doc_url": "https://github.com/NazzarenoGiannelli/transform_ue",
     "tracker_url": "",
 }
 
@@ -17,10 +17,10 @@ from math import*
 import pyperclip
 
 #create the new Operator Class
-class OBJECT_OT_transform_ue(bpy.types.Operator):
+class OBJECT_OT_coordiknight(bpy.types.Operator):
     """Copy location, rotation and scale of the selected objects to clipboard (then go to UE and Ctrl+V)"""
-    bl_idname = "object.transform_ue"
-    bl_label = "Transform to UE"
+    bl_idname = "object.coordiknight"
+    bl_label = "CoordiKnight"
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
@@ -94,12 +94,12 @@ class OBJECT_OT_transform_ue(bpy.types.Operator):
         return {'FINISHED'}
 
 def menu_func(self, context):
-    self.layout.operator(OBJECT_OT_transform_ue.bl_idname)
+    self.layout.operator(OBJECT_OT_coordiknight.bl_idname)
 
 def register():
-    bpy.utils.register_class(OBJECT_OT_transform_ue)
+    bpy.utils.register_class(OBJECT_OT_coordiknight)
     bpy.types.VIEW3D_MT_object.append(menu_func)
 
 def unregister():
-    bpy.utils.unregister_class(OBJECT_OT_transform_ue)
+    bpy.utils.unregister_class(OBJECT_OT_coordiknight)
     bpy.types.VIEW3D_MT_object.remove(menu_func)
