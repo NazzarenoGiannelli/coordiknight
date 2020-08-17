@@ -1,4 +1,6 @@
-# Transform to Unreal Engine
+<a>![](pics/CoordiKnight_logotype_onWhite.jpg)</a>
+
+# CoordiKnight | Blender to Unreal Engine
 ## Copy location, rotation and scale of the selected objects from Blender to the clipboard and easily paste them into Unreal Engine.
 
 <a>![](pics/Transform2UE_01_600px.gif)</a>
