@@ -8,7 +8,7 @@ bl_info = {
     "location": "View 3D > Object",
     "description": "Copy location, rotation and scale of the selected objects to clipboard and easily paste them into Unreal Engine",
     "warning": "",
-    "doc_url": "https://github.com/NazzarenoGiannelli/transform_ue",
+    "doc_url": "https://github.com/NazzarenoGiannelli/coordiknight",
     "tracker_url": "",
 }
 
