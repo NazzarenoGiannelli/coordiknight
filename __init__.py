@@ -27,6 +27,9 @@ class OBJECT_OT_coordiknight(bpy.types.Operator):
 
         #variable for the selected objects
         selected = bpy.context.selected_objects
+        
+        #variable for getting the active object name
+        active = bpy.context.object
 
         #variable for counting the selected objects
         counter = 0
@@ -71,7 +74,7 @@ class OBJECT_OT_coordiknight(bpy.types.Operator):
                     End Object
                     StaticMeshComponent="StaticMeshComponent0"
                     RootComponent="StaticMeshComponent0"
-                    ActorLabel="Placeholder_'''+ str(counter) +'''"
+                    ActorLabel="'''+ str(active) +''''''+ str(counter) +'''"
                 End Actor''')
 
         #join the actors text
