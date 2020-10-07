@@ -27,12 +27,6 @@ class OBJECT_OT_coordiknight(bpy.types.Operator):
 
         #variable for the selected objects
         selected = bpy.context.selected_objects
-        
-        #variable for getting the active object name
-        active = bpy.context.object
-
-        #variable for counting the selected objects
-        counter = 0
 
         #empty list to fill with UE actors data for the selected objects
         actorsList = []
@@ -42,6 +36,9 @@ class OBJECT_OT_coordiknight(bpy.types.Operator):
 
             #make the object active
             bpy.context.view_layer.objects.active = s
+
+            #variable for getting the active object name
+            active = bpy.context.object.name
 
             #get object location in centimeters
             locX = str(s.location.x * 100)
@@ -57,9 +54,6 @@ class OBJECT_OT_coordiknight(bpy.types.Operator):
             sclX = str(s.scale.x)
             sclY = str(s.scale.y)
             sclZ = str(s.scale.z)
-            
-            #add numbering to the current object
-            counter += 1
 
             actorsList.append("""
                 Begin Actor Class=/Script/Engine.StaticMeshActor Name=Cube19_4 Archetype=/Script/Engine.StaticMeshActor'/Script/Engine.Default__StaticMeshActor'
@@ -74,7 +68,7 @@ class OBJECT_OT_coordiknight(bpy.types.Operator):
                     End Object
                     StaticMeshComponent="StaticMeshComponent0"
                     RootComponent="StaticMeshComponent0"
-                    ActorLabel="'''+ str(active) +''''''+ str(counter) +'''"
+                    ActorLabel="'''+ str(active) +'''"
                 End Actor''')
 
         #join the actors text
