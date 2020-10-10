@@ -2,19 +2,18 @@
 bl_info = {
     "name": "CoordiKnight | Blender to Unreal Engine",
     "author": "Nazzareno Giannelli <nazzareno@myd3sign.com>",
-    "version": (1, 0),
+    "version": (1, 1),
     "blender": (2, 83, 0),
     "category": "Object",
     "location": "View 3D > Object",
     "description": "Copy location, rotation and scale of the selected objects to clipboard and easily paste them into Unreal Engine",
     "warning": "",
-    "doc_url": "https://github.com/NazzarenoGiannelli/coordiknight",
+    "doc_url": "https://gum.co/uyWlt",
     "tracker_url": "",
 }
 
 import bpy
 from math import*
-import pyperclip
 
 #create the new Operator Class
 class OBJECT_OT_coordiknight(bpy.types.Operator):
@@ -85,8 +84,8 @@ class OBJECT_OT_coordiknight(bpy.types.Operator):
         End Surface
         End Map"""
 
-        #use the pyperclip module in order to copy the C++ text to clipboard
-        pyperclip.copy(beginText + actorsText + endText)
+        #copy the C++ whole snippet to clipboard
+        bpy.context.window_manager.clipboard = beginText + actorsText + endText
 
         return {'FINISHED'}
 
