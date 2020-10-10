@@ -54,6 +54,7 @@ class OBJECT_OT_coordiknight(bpy.types.Operator):
             sclY = str(s.scale.y)
             sclZ = str(s.scale.z)
 
+            #compose the C++ snippet for the current object
             actorsList.append("""
                 Begin Actor Class=/Script/Engine.StaticMeshActor Name=Cube19_4 Archetype=/Script/Engine.StaticMeshActor'/Script/Engine.Default__StaticMeshActor'
                     Begin Object Class=/Script/Engine.StaticMeshComponent Name="StaticMeshComponent0" Archetype=StaticMeshComponent'/Script/Engine.Default__StaticMeshActor:StaticMeshComponent0'
