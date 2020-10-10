@@ -11,7 +11,7 @@ A one-click solution for quickly placing a lot of instances in your levels!
 
 
 ## v1.1 IMPORTANT UPDATE
-The current updated version directly supports the Blender built-in clipboard functionality, so I removed the pyperclip module from the package and you don't need anymore to copy it into your system.
+**The current updated version directly supports the Blender built-in clipboard functionality, so I removed the pyperclip module from the package and you don't need anymore to copy it into your system.
 Just install the addon and you are good to go!
 
 <a>![](pics/Transform2UE_02_600px.gif)</a>
