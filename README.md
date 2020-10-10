@@ -7,7 +7,7 @@
 
 This Blender addon allows you to copy the location/rotation/scale of all selected meshes in the scene to the clipboard and simply paste them into Unreal Engine has placeholder static meshes. Combined with Epic Games Send to Unreal addon, it's a fast and efficient way to position many instances of the same mesh or even position many objects of any kind all at once.
 
-A one-click solution for quickly placing a lot of instances in your levels!
+## A one-click solution for quickly placing a lot of instances in your levels!
 
 
 ## v1.1 IMPORTANT UPDATE
