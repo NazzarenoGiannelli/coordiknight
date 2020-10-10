@@ -5,12 +5,16 @@
 
 <a>![](pics/Transform2UE_01_600px.gif)</a>
 
-This Blender addon allows you to copy the location/rotation/scaling of all the selected meshes in the scene to the clipboard and simply paste them into Unreal Engine has placeholder static meshes. Combined with Epic Games <a href="https://github.com/EpicGames/BlenderTools">Send to Unreal</a> addon, it's a fast and efficient way to position many instances of the same mesh.
+This Blender addon allows you to copy the location/rotation/scale of all selected meshes in the scene to the clipboard and simply paste them into Unreal Engine has placeholder static meshes. Combined with Epic Games Send to Unreal addon, it's a fast and efficient way to position many instances of the same mesh or even position many objects of any kind all at once.
 
-### Requirements
-For the addon to work properly, you need to place the <a href="https://pypi.org/project/pyperclip/">pyperclip</a> Python module inside of your Blender installation folder.
-I still need to find a nice way to automatically install it upon addon activation, so for now **you can find the pyperclip folder inside of the addon .zip.**
-You can place that entire folder in this directory here: ..\Blender\2.XX\python\lib\site-packages
+A one-click solution for quickly placing a lot of instances in your levels!
+
+
+## v1.1
+
+## IMPORTANT UPDATE
+The current updated version directly supports the Blender built-in clipboard functionality, so I removed the pyperclip module from the package and you don't need anymore to copy it into your system.
+Just install the addon and you are good to go!
 
 <a>![](pics/Transform2UE_02_600px.gif)</a>
 
