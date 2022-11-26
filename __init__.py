@@ -1,8 +1,8 @@
 #info about the addon
 bl_info = {
     "name": "CoordiKnight | Blender to Unreal Engine",
-    "author": "Nazzareno Giannelli <nazzareno@myd3sign.com>",
-    "version": (1, 1),
+    "author": "Nazzareno Giannelli <nazzareno.giannelli@gmail.com>",
+    "version": (1, 2),
     "blender": (2, 83, 0),
     "category": "Object",
     "location": "View 3D > Object",
@@ -57,11 +57,12 @@ class OBJECT_OT_coordiknight(bpy.types.Operator):
             #compose the C++ snippet for the current object
             actorsList.append("""
                 Begin Actor Class=/Script/Engine.StaticMeshActor Name=Cube19_4 Archetype=/Script/Engine.StaticMeshActor'/Script/Engine.Default__StaticMeshActor'
-                    Begin Object Class=/Script/Engine.StaticMeshComponent Name="StaticMeshComponent0" Archetype=StaticMeshComponent'/Script/Engine.Default__StaticMeshActor:StaticMeshComponent0'
+                    Begin Object Class=/Script/Engine.StaticMeshComponent Name="StaticMeshComponent0" Archetype=/Script/Engine.StaticMeshComponent'/Script/Engine.Default__StaticMeshActor:StaticMeshComponent0'
                     End Object
                     Begin Object Name="StaticMeshComponent0"
-                        StaticMesh=StaticMesh'"/Engine/BasicShapes/Cube.Cube"'
+                        StaticMesh=/Script/Engine.StaticMesh'"/Engine/BasicShapes/Cube.Cube"'
                         StaticMeshDerivedDataKey="STATICMESH_F9378A28F161444987BACE79B2590E57_228332BAE0224DD294E232B87D83948FQuadricMeshReduction_V1$2e0_26D666F86459324BE77D4F6A1939C6698000000000100000001000000000000000100000001000000010000000000000000000000000000004000000000000000020000000000803F0000803F0000803F0000004000000000050000004E6F6E650030000000803F0000803F000000000000004100000000000034420303030000000000000000LS0MNSzzzzzzzz0"
+                        OverrideMaterials(0)=/Script/Engine.Material'"/Engine/BasicShapes/BasicShapeMaterial.BasicShapeMaterial"'
                         RelativeLocation=(X="""+ locX +',Y='+ locY +',Z='+ locZ +""")
                         RelativeRotation=(Pitch="""+ rotY +',Yaw='+ rotZ +',Roll='+ rotX +""")
                         RelativeScale3D=(X="""+ sclX +',Y='+ sclY +',Z='+ sclZ +''')
