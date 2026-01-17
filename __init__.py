@@ -2,7 +2,7 @@
 bl_info = {
     "name": "CoordiKnight | Blender to Unreal Engine",
     "author": "Nazzareno Giannelli <nazzareno.giannelli@gmail.com>",
-    "version": (1, 2),
+    "version": (1, 3),
     "blender": (2, 83, 0),
     "category": "Object",
     "location": "View 3D > Object",
@@ -22,22 +22,20 @@ class OBJECT_OT_coordiknight(bpy.types.Operator):
     bl_label = "CoordiKnight"
     bl_options = {'REGISTER', 'UNDO'}
 
+    @classmethod
+    def poll(cls, context):
+        return context.selected_objects and context.mode == 'OBJECT'
+
     def execute(self, context):
 
         #variable for the selected objects
-        selected = bpy.context.selected_objects
+        selected = context.selected_objects
 
         #empty list to fill with UE actors data for the selected objects
         actorsList = []
 
         #transform values for every selected object
         for s in selected:
-
-            #make the object active
-            bpy.context.view_layer.objects.active = s
-
-            #variable for getting the active object name
-            active = bpy.context.object.name
 
             #get object location in centimeters
             locX = str(s.location.x * 100)
@@ -69,7 +67,7 @@ class OBJECT_OT_coordiknight(bpy.types.Operator):
                     End Object
                     StaticMeshComponent="StaticMeshComponent0"
                     RootComponent="StaticMeshComponent0"
-                    ActorLabel="'''+ str(active) +'''"
+                    ActorLabel="'''+ s.name +'''"
                 End Actor''')
 
         #join the actors text
@@ -87,8 +85,9 @@ class OBJECT_OT_coordiknight(bpy.types.Operator):
         End Map"""
 
         #copy the C++ whole snippet to clipboard
-        bpy.context.window_manager.clipboard = beginText + actorsText + endText
+        context.window_manager.clipboard = beginText + actorsText + endText
 
+        self.report({'INFO'}, f"CoordiKnight: Copied {len(selected)} object(s) to clipboard")
         return {'FINISHED'}
 
 def menu_func(self, context):
