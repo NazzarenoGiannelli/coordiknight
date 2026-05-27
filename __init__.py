@@ -52,8 +52,9 @@ class OBJECT_OT_coordiknight(bpy.types.Operator):
             sclY = str(s.scale.y)
             sclZ = str(s.scale.z)
 
-            #escape backslashes and double quotes in the object name so the T3D ActorLabel string stays well-formed
-            safeName = s.name.replace('\\', '\\\\').replace('"', '\\"')
+            #sanitize the object name so the T3D ActorLabel string stays well-formed:
+            #escape backslashes and double quotes, and strip newlines that would prematurely close the actor block
+            safeName = s.name.replace('\\', '\\\\').replace('"', '\\"').replace('\r', '').replace('\n', ' ')
 
             #compose the C++ snippet for the current object
             actorsList.append("""
