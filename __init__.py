@@ -52,9 +52,9 @@ class OBJECT_OT_coordiknight(bpy.types.Operator):
             sclY = str(s.scale.y)
             sclZ = str(s.scale.z)
 
-            #sanitize the object name so the T3D ActorLabel string stays well-formed:
-            #escape backslashes and double quotes, and strip newlines that would prematurely close the actor block
-            safeName = s.name.replace('\\', '\\\\').replace('"', '\\"').replace('\r', '').replace('\n', ' ')
+            #sanitize the object name so the T3D ActorLabel string stays well-formed across UE versions:
+            #replace (not escape) the chars that would break a double-quoted T3D token, since UE's T3D parser does not reliably honor backslash escapes
+            safeName = s.name.replace('"', "'").replace('\\', '_').replace('\r', '').replace('\n', ' ')
 
             #compose the C++ snippet for the current object
             actorsList.append("""
