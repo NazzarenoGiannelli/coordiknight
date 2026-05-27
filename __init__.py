@@ -13,7 +13,7 @@ bl_info = {
 }
 
 import bpy
-from math import*
+from math import degrees
 
 #create the new Operator Class
 class OBJECT_OT_coordiknight(bpy.types.Operator):
@@ -52,6 +52,9 @@ class OBJECT_OT_coordiknight(bpy.types.Operator):
             sclY = str(s.scale.y)
             sclZ = str(s.scale.z)
 
+            #escape backslashes and double quotes in the object name so the T3D ActorLabel string stays well-formed
+            safeName = s.name.replace('\\', '\\\\').replace('"', '\\"')
+
             #compose the C++ snippet for the current object
             actorsList.append("""
                 Begin Actor Class=/Script/Engine.StaticMeshActor Name=Cube19_4 Archetype=/Script/Engine.StaticMeshActor'/Script/Engine.Default__StaticMeshActor'
@@ -67,7 +70,7 @@ class OBJECT_OT_coordiknight(bpy.types.Operator):
                     End Object
                     StaticMeshComponent="StaticMeshComponent0"
                     RootComponent="StaticMeshComponent0"
-                    ActorLabel="'''+ s.name +'''"
+                    ActorLabel="'''+ safeName +'''"
                 End Actor''')
 
         #join the actors text
