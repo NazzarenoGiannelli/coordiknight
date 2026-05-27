@@ -2,7 +2,7 @@
 bl_info = {
     "name": "CoordiKnight | Blender to Unreal Engine",
     "author": "Nazzareno Giannelli <nazzareno.giannelli@gmail.com>",
-    "version": (1, 2),
+    "version": (1, 3),
     "blender": (2, 83, 0),
     "category": "Object",
     "location": "View 3D > Object",
@@ -13,7 +13,7 @@ bl_info = {
 }
 
 import bpy
-from math import*
+from math import degrees
 
 #create the new Operator Class
 class OBJECT_OT_coordiknight(bpy.types.Operator):
@@ -22,22 +22,20 @@ class OBJECT_OT_coordiknight(bpy.types.Operator):
     bl_label = "CoordiKnight"
     bl_options = {'REGISTER', 'UNDO'}
 
+    @classmethod
+    def poll(cls, context):
+        return context.selected_objects and context.mode == 'OBJECT'
+
     def execute(self, context):
 
         #variable for the selected objects
-        selected = bpy.context.selected_objects
+        selected = context.selected_objects
 
         #empty list to fill with UE actors data for the selected objects
         actorsList = []
 
         #transform values for every selected object
         for s in selected:
-
-            #make the object active
-            bpy.context.view_layer.objects.active = s
-
-            #variable for getting the active object name
-            active = bpy.context.object.name
 
             #get object location in centimeters
             locX = str(s.location.x * 100)
@@ -54,6 +52,10 @@ class OBJECT_OT_coordiknight(bpy.types.Operator):
             sclY = str(s.scale.y)
             sclZ = str(s.scale.z)
 
+            #sanitize the object name so the T3D ActorLabel string stays well-formed across UE versions:
+            #replace (not escape) the chars that would break a double-quoted T3D token, since UE's T3D parser does not reliably honor backslash escapes
+            safeName = s.name.replace('"', "'").replace('\\', '_').replace('\r', '').replace('\n', ' ')
+
             #compose the C++ snippet for the current object
             actorsList.append("""
                 Begin Actor Class=/Script/Engine.StaticMeshActor Name=Cube19_4 Archetype=/Script/Engine.StaticMeshActor'/Script/Engine.Default__StaticMeshActor'
@@ -69,7 +71,7 @@ class OBJECT_OT_coordiknight(bpy.types.Operator):
                     End Object
                     StaticMeshComponent="StaticMeshComponent0"
                     RootComponent="StaticMeshComponent0"
-                    ActorLabel="'''+ str(active) +'''"
+                    ActorLabel="'''+ safeName +'''"
                 End Actor''')
 
         #join the actors text
@@ -87,8 +89,9 @@ class OBJECT_OT_coordiknight(bpy.types.Operator):
         End Map"""
 
         #copy the C++ whole snippet to clipboard
-        bpy.context.window_manager.clipboard = beginText + actorsText + endText
+        context.window_manager.clipboard = beginText + actorsText + endText
 
+        self.report({'INFO'}, f"CoordiKnight: Copied {len(selected)} object(s) to clipboard")
         return {'FINISHED'}
 
 def menu_func(self, context):
